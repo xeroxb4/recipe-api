@@ -12,23 +12,6 @@ const app = express();
 // Apply middlewares
 app.use(express.json());
 
-// Define routes
-app.get('/', (req, res)=>{
-    res.json('Welcome Home');
-});
-
-app.post('/login', (req, res)=>{
-    res.json('Login Sucessful');
-});
-
-app.patch('/changepassword', (req, res)=>{
-    res.json('Password changed');
-});
-
-app.patch('/updateuser/dob', (req, res)=>{
-    res.json('user dob updated');
-});
-
 app.use(recipeRouter)
 
 
@@ -38,4 +21,3 @@ app.listen(3000, () => {
 });
 
 
-// tEfgi2dNK03dTgKY
