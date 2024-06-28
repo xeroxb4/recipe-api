@@ -1,6 +1,6 @@
 import {Router} from "express"
 
-import { deleteRecipe, getRecipe, getRecipes, patchRecipe, postRecipe } from "../controllers/recipe.js";
+import { deleteRecipe, getRecipe, getRecipes, patchRecipe, postRecipe } from "../controllers/recipe_controllers.js";
 
 // Create router
 const recipeRouter = Router();
