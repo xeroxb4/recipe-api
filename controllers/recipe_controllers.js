@@ -1,4 +1,4 @@
-import { RecipeModel } from "../routes/models/recipe.js";
+import { RecipeModel } from "../models/recipe_models.js";
 
 
 
@@ -28,8 +28,16 @@ export const postRecipe = async (req, res, next) => {
 };
 
 // Patch recipe (personal tring)
-export const patchRecipe = (req, res,) =>{
-    res.json(`recipe with ID ${req.params.id} updated`);
+export const patchRecipe = async (req, res,) =>{
+    try{
+        // Patch Recipe
+        const patchRecipe = await RecipeModel.findByIdAndUpdate(req.params.id);
+        // Return response
+        res.json(patchedRecipe)
+    } catch (error) {
+        next(error)
+    }
+    
 };
 
 // Delete Recipe (personal trying)
@@ -40,7 +48,7 @@ export const deleteRecipe = async (req, res, next) =>{
         // Return response
         res.json(deletedRecipes)
     } catch (error) {
-        next(error)
+        next(error);
     }
 };
 
