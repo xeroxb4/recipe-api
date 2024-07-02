@@ -5,8 +5,13 @@ import { RecipeModel } from "../models/recipe_models.js";
 // Get All Recipes
 export const getRecipes = async (req, res, next) => {
     try {
+        // Get query
+        const {limit, skip, search} = req.query;
         // Get all recipes from database
-        const allRecipes = await RecipeModel.find();
+        const allRecipes = await RecipeModel
+        .find({name: search})
+        .limit(limit)
+        .skip(skip);
         // Return all recipes as response
         res.json(allRecipes);
     } catch (error) {
@@ -30,15 +35,16 @@ export const postRecipe = async (req, res, next) => {
 // Patch recipe (personal tring)
 export const patchRecipe = async (req, res,) =>{
     try{
-        // Patch Recipe
-        const patchRecipe = await RecipeModel.findByIdAndUpdate(req.params.id);
-        // Return response
-        res.json(patchedRecipe)
-    } catch (error) {
-        next(error)
-    }
+        // Update Recipe by Id
+        const updateRecipe = await RecipeModel.findByIdAndUpdate(req.params.id, req.body,{new:true});;
+
+            // Return response
+            res.json(updateRecipe);
+        } catch (error) {
+            next(error)
+    } 
     
-};
+}
 
 // Delete Recipe (personal trying)
 export const deleteRecipe = async (req, res, next) =>{
