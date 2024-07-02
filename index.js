@@ -25,6 +25,9 @@ app.use(express.static('uploads'));
 // Use Router
 app.use(recipeRouter);
 app.use(categoryRouter);
+expressOasGenerator.handleRequests();
+app.use((req,res)=> res.redirect('api-docs/'));
+app.use(express.static('uploads'));
 
 
 
