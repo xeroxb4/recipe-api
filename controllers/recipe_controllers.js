@@ -6,10 +6,10 @@ import { RecipeModel } from "../models/recipe_models.js";
 export const getRecipes = async (req, res, next) => {
     try {
         // Get query
-        const {limit, skip, search} = req.query;
+        const {limit, skip, filter} = req.query;
         // Get all recipes from database
         const allRecipes = await RecipeModel
-        .find({name: search})
+        .find(JSON.parse(filter))
         .limit(limit)
         .skip(skip);
         // Return all recipes as response
